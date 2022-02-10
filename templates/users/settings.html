@@ -1,0 +1,141 @@
+{% extends "layout/users.html" %}{% load crispy_forms_tags %} {% block title %} Account Settings {% endblock title %} {% block stylesheet %} {% endblock stylesheet %} {% block content %}
+<header>
+    <!-- TopBar -->
+    <nav class="navbar navbar-expand   topbar mb-4 static-top">
+        <a href="{% url 'dashboard' %}" id="sidebarToggleTop2" class=" rounded-circle mr-3 text-white ">
+            <i class="fas fa-arrow-left"></i>
+            <span>Settings</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item    mx-1">
+                <a class="nav-link  " href="{% url 'notifications' %}" id="alertsDropdown">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <span class="badge badge-danger badge-counter">{{user_notify_count}}</span>
+                </a>
+
+            </li>
+
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-profile rounded-circle" src="/static/images/avatar.png" style="max-width: 60px">
+                    <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                    <a class="dropdown-item" href="/my-account-settings/?tab=Update Profile">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'history' %}">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 "></i> Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- Topbar -->
+</header>
+
+<div class="content" style="min-height: 87vh;">
+    <div class="container">
+        <div class="col-xl-12">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="depo-card breadcrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Settings </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="space-top deposite"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active  " href="{% url 'settings' %}" aria-controls="home" aria-selected="true">Profile Settings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary ml-2 mb-2" href="{% url 'change_password' %}" aria-controls="profile" aria-selected="false">Security</a>
+                        </li>
+
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade  show active  " id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="form mt-3 mb-3">
+                                <form action="" method="post" class="mt-5" id="profileform">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            {{ u_form.country|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ u_form.city|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ u_form.state|as_crispy_field }}
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group">
+                                        {{ u_form.address|as_crispy_field }}
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-4">
+                                            {{ u_form.zipcode|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ u_form.date_of_birth|as_crispy_field }}
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            {{ u_form.gender|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        {{ u_form.phone|as_crispy_field }}
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="submit" name="submit" id="submit_btn" class="btn btn-primary btn-block" value="Update Profile">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %} {% block javascripts %}
+<script type="text/javascript">
+    $('#id_date_of_birth').datepicker({
+        startView: 2,
+        format: 'yyyy/mm/dd',
+        autoclose: true,
+        todayHighlight: true,
+        todayBtn: 'linked',
+    });
+</script>
+
+{% endblock javascripts %}

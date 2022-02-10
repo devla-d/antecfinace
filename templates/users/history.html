@@ -1,0 +1,130 @@
+{% extends "layout/users.html" %} {% block title %} Activities Logs {% endblock title %} {% block stylesheet %}
+
+<style>
+    div.dataTables_wrapper div.dataTables_info {
+        color: #fff !important
+    }
+    
+    th {
+        color: #fff !important
+    }
+</style>
+{% endblock stylesheet %} {% block content %}
+
+
+<header>
+    <!-- TopBar -->
+    <nav class="navbar navbar-expand   topbar mb-4 static-top">
+        <a href="{% url 'dashboard' %}" id="sidebarToggleTop2" class=" rounded-circle mr-3 text-white ">
+            <i class="fas fa-arrow-left"></i>
+            <span>History</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item    mx-1">
+                <a class="nav-link  " href="{% url 'notifications' %}" id="alertsDropdown">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <span class="badge badge-danger badge-counter">{{user_notify_count}}</span>
+                </a>
+
+            </li>
+
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-profile rounded-circle" src="/static/images/avatar.png" style="max-width: 60px">
+                    <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                    <a class="dropdown-item" href="/my-account-settings/?tab=Update Profile">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'history' %}">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 "></i> Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- Topbar -->
+</header>
+
+<div class="content" style="min-height: 87vh;">
+    <div class="container">
+        <div class="col-xl-12">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="depo-card breadcrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">History </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="space-top deposite"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="table-responsive mb-5">
+                        <table id="example" class="table align-items-center table-flush" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th scope="col text-white">Activity</th>
+                                    <th scope="col text-white">Mode</th>
+                                    <th scope="col text-white">Date</th>
+                                    <th scope="col text-white">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                {% for obj in transactions %}
+                                <tr>
+                                    <td scope="row"><span class="text-success">{{ obj.trans_type }}</span></td>
+                                    {% if obj.status == 'pending' %}
+                                    <td class="text-warning">pending</td>
+                                    {% elif obj.status == 'declined' %}
+                                    <td class="text-danger">declined</td>
+                                    {% else %}
+                                    <td class="text-success">approved</td>
+                                    {% endif %}
+                                    <td class="text-muted">{{ obj.date|date:"Y/m/d" }}</td>
+                                    <td class="  text-success"> ${{ obj.amount }} </td>
+                                </tr>
+                                {% endfor %}
+
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %} {% block javascripts %}
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
+    });
+</script>
+
+
+
+
+{% endblock javascripts %}

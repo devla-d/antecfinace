@@ -1,0 +1,144 @@
+{% extends "layout/users.html" %} {% block title %} My Referrals {% endblock title %} {% block stylesheet %}
+
+<style>
+    div.dataTables_wrapper div.dataTables_info {
+        color: #fff !important
+    }
+    
+    th {
+        color: #fff !important
+    }
+</style>
+{% endblock stylesheet %} {% block content %}
+
+
+<header>
+    <!-- TopBar -->
+    <nav class="navbar navbar-expand   topbar mb-4 static-top">
+        <a href="{% url 'dashboard' %}" id="sidebarToggleTop2" class=" rounded-circle mr-3 text-white ">
+            <i class="fas fa-arrow-left"></i>
+            <span>Referrals</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item    mx-1">
+                <a class="nav-link  " href="{% url 'notifications' %}" id="alertsDropdown">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <span class="badge badge-danger badge-counter">{{user_notify_count}}</span>
+                </a>
+
+            </li>
+
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-profile rounded-circle" src="/static/images/avatar.png" style="max-width: 60px">
+                    <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                    <a class="dropdown-item" href="/my-account-settings/?tab=Update Profile">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'history' %}">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 "></i> Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- Topbar -->
+</header>
+
+<div class="content" style="min-height: 87vh;">
+    <div class="container">
+        <div class="col-xl-12">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="depo-card breadcrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Referrals</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="space-top deposite"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="card-header d-flex justify-content-between">
+                        <p class="mt-2"> Refferal Link</p>
+                        <h5>Ref Balance : ${{user.bonus}}</h5>
+                    </div>
+
+                </div>
+                <div class="col-lg-12">
+
+
+                    <label for="input-copy">  </label>
+                    <div class="input-group mb-2">
+
+                        <input type="url" class="form-control" id="input-copy" name="code" value="http://localhost:8000/sign-up/?ref-code={{user.id}}" readonly>
+                        <div class="input-group-append">
+                            <button class="input-group-text btn btn-primary" data-clipboard-action="copy" data-clipboard-target="#input-copy">Copy</button>
+                        </div>
+                    </div>
+                </div>
+                {% if myrecs %}
+                <div class="col-lg-12">
+                    <div class="table-responsive-md mt-4 p-0">
+                        <table class="table style--two white-space-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Bonus</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for obj in myrecs %}
+                                <tr>
+                                    <th scope="row">{{ forloop.counter }}</th>
+                                    <td class="text-success">{{ obj.user.username }}</td>
+                                    <td class="text-warning">10%</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% else %}
+                <div class="col-xl-12">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-xl-8 mt-2">
+                            <div class="card   mt-5 " style="padding: 20px;">
+                                <div class="text-center">
+                                    <h5 class="text-primary">Your Don't Have Any Referrals</h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %} {% block javascripts %} {% endblock javascripts %}

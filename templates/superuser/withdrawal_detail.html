@@ -1,0 +1,96 @@
+{% extends "layout/superuser.html" %} {% load crispy_forms_tags %} {% block stylesheet %} {% endblock stylesheet %} {% block content %}
+
+
+
+
+
+<!-- Container Fluid-->
+<div class="container-fluid" id="container-wrapper">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">withdrawal Detail</h1>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">withdrawal Detail</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 mb-4">
+            <!-- Users -->
+            <div class="card">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary"></h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-borderless align-items-center table-flush">
+                        <tbody>
+
+                            <tr>
+                                <th>User</th>
+                                <td class="text-right text-success">{{withdrawal.user.username}}</td>
+
+                            </tr>
+                            <tr>
+                                <th>Date</th>
+                                <td class="text-right text-success">{{withdrawal.date}}</td>
+                            </tr>
+                            <tr class="border-0">
+                                <th>Amount</th>
+                                <td class="text-right text-success">${{withdrawal.amount}}</td>
+                            </tr>
+                            <tr class="border-0">
+                                <th>Coin</th>
+                                <td class="text-right text-success">{{withdrawal.coin_tpye}}</td>
+                            </tr>
+
+                            <tr class="border-0">
+                                <th>Wallet Address</th>
+                                <td class="text-right text-success">{{withdrawal.wallet_address}}</td>
+                            </tr>
+
+                            <tr class="border-0">
+                                <th>Status</th>
+                                {% if withdrawal.status == 'pending' %}
+                                <td class="text-right text-warning">Pending</td>
+                                {% elif withdrawal.status == 'declined' %}
+                                <td class="text-right text-danger">Declined</td>
+                                {% else %}
+                                <td class="text-right text-success">Approved</td>
+                                {% endif %}
+                            </tr>
+
+
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <div class="col-xl-12">
+                        {% if withdrawal.status == 'pending' %}
+                        <form action="" method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-6"><input type="submit" class="btn btn-primary btn-block" name="submit" value="Approve"></div>
+                                <div class="col-6"><input type="submit" class="btn btn-danger btn-block" name="submit" value="Decline"></div>
+                            </div>
+                        </form> {% else %}
+                        <p class="text-center text-info">{{withdrawal.status}}</p> {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Row-->
+
+
+</div>
+<!---Container Fluid-->
+
+
+
+{% endblock content %} {% block script %} {% endblock script %}

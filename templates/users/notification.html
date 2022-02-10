@@ -1,0 +1,114 @@
+{% extends "layout/users.html" %} {% block title %} Notifications {% endblock title %} {% block stylesheet %}
+<style>
+    .text-success {
+        color: #fd961a !important;
+    }
+</style>{% endblock stylesheet %} {% block content %}
+
+
+<header>
+    <!-- TopBar -->
+    <nav class="navbar navbar-expand   topbar mb-4 static-top">
+        <a href="{% url 'dashboard' %}" id="sidebarToggleTop2" class=" rounded-circle mr-3 text-white ">
+            <i class="fas fa-arrow-left"></i>
+            <span>Notifications</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item    mx-1">
+                <a class="nav-link  " href="{% url 'notifications' %}" id="alertsDropdown">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <span class="badge badge-danger badge-counter">{{user_notify_count}}</span>
+                </a>
+
+            </li>
+
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-profile rounded-circle" src="/static/images/avatar.png" style="max-width: 60px">
+                    <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                    <a class="dropdown-item" href="/my-account-settings/?tab=Update Profile">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'history' %}">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 "></i> Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- Topbar -->
+</header>
+
+<div class="content" style="min-height: 87vh;">
+    <div class="container">
+        <div class="col-xl-12">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="depo-card breadcrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">alerts </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="space-top deposite"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12 mb-5">
+                    {% if notification %}
+                    <div class="row d-flex justify-content-center">
+                        {% for notify in notification %}
+                        <div class="col-xl-10 p-3 d-flex align-items-center   osahan-post-header mt-3" style="background-color:  #274c65;  box-shadow: 0 3px 4.7px 0.3px rgb(0 0 0 / 24%), 0 1px 6.86px 0.14px rgb(0 0 0 / 16%) ">
+                            <div class="dropdown-list-image mr-3 d-flex align-items-center   justify-content-center rounded-circle text-prim"><i class="fas fa-bell text-success"></i></div>
+                            <div class="font-weight-bold mr-3">
+                                <div class="text-truncate text-white">{{ notify.title }}</div>
+                                <div class="small text-w-50">{{ notify.body }}</div>
+                            </div>
+                            <span class="ml-auto mb-auto">
+                                                            
+                                                            <br />
+                                                            <div class="text-right text-muted pt-1">{{ notify.date|date:'Y/m/d ' }}</div>
+                                                        </span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+
+
+
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-xl-8 mt-4">
+                            <div class="card   mt-5 " style="padding: 20px;">
+                                <div class="text-center">
+                                    <h5 class="text-primary">No Current Notifications </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %} {% block javascripts %} {% endblock javascripts %}

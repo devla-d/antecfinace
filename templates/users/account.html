@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/static/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/static/css/owl.theme.default.css">
+    <link rel="stylesheet" href="/static/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/icons/cryptocoins/css/cryptocoins.css">
+    <link rel="stylesheet" href="/static/icons/cryptocoins/css/cryptocoins-colors.css">
+    <link rel="stylesheet" href="/static/icons/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/static/icons/line-awesome/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/static/icons/material-design-iconic-font/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="/static/css/magnific-popup.css">
+    <link rel="stylesheet" href="/static/css/toastr.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/responsive.css">
+    <link rel="stylesheet" href="/static/css/orange.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+    <main class="wrapper dashboard">
+        <div class="dismiss" id="dismiss">
+            <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="sidebar ">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
+                <div class="sidebar-brand-icon">
+                    <!--<img src="/static/images/logo-dark.png">-->
+                </div>
+                <div class="sidebar-brand-text mx-3">FXTM-FINANCE ™</div>
+            </a>
+            <hr class="sidebar-divider my-0">
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                    </a>
+                </li>
+                <li>
+                    <a href="#"> <i class="far fa-fw fa-credit-card"></i>
+                        <span>Deposit</span></a>
+                </li>
+                <li>
+                    <a href="#"> <i class="las la-money-bill-wave-alt"></i>
+                        <span>Withdraw</span></a>
+                </li>
+                <li><a href="#"><i class="fas fa-fw fa-history"></i>
+                    <span>History</span></a></li>
+                <li><a href="#"><i class="fas fa-fw fa-user-circle"></i>
+                    <span>Account</span></a></li>
+                <li>
+                    <a href="#"> <i class="fas fa-fw fa-cog fa-spin"></i>
+                        <span>Settings</span></a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-fw fa-sign-out-alt "></i><span>Logout</span> </a>
+                </li>
+            </ul>
+        </div>
+        <!-- Dark overlay -->
+        <div class="overlay "></div>
+        <header>
+            <!-- TopBar -->
+            <nav class="navbar navbar-expand   topbar mb-4 static-top">
+                <a href="/dashboard.html" id="sidebarToggleTop2" class=" rounded-circle mr-3 text-white ">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Account</span>
+                </a>
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item    mx-1">
+                        <a class="nav-link  " href="#" id="alertsDropdown">
+                            <i class="fas fa-bell fa-fw"></i>
+                            <span class="badge badge-danger badge-counter">1</span>
+                        </a>
+
+                    </li>
+
+
+                    <div class="topbar-divider d-none d-sm-block"></div>
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-profile rounded-circle" src="/static/images/avatar.png" style="max-width: 60px">
+                            <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href="/my-account">
+                                <i class="fas fa-user fa-sm fa-fw mr-2 "></i> Profile
+                            </a>
+                            <a class="dropdown-item" href="/settings">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i> Settings
+                            </a>
+                            <a class="dropdown-item" href="/account-log">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 "></i> Activity Log
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i> Logout
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Topbar -->
+        </header>
+
+        <div class="content" style="min-height: 87vh;">
+            <div class="container">
+                <div class="col-xl-12">
+                    <div class="row justify-content-center">
+                        <div class="col-7">
+                            <div class="depo-card breadcrum">
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Account</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="space-top second"></div>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-xl-12">
+                            <div class="row d-flex justify-content-center">
+                                <img src="/static/images/avatar.png" name="aboutme" width="140" height="140" style="border-radius: 50%;" border="0" class="img-circle">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-10">
+                            <div class="balances  mt-3">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="bal-item">
+                                            <h3>Tot Balance</h3>
+                                            <p>$1000</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bal-item ml-4">
+                                            <h3>Deposit Balance</h3>
+                                            <p>$1000080</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bal-item">
+                                            <h3>Tot withdraw</h3>
+                                            <p>$190000</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="bal-item ml-4">
+                                            <h3>Tot Amout Invested</h3>
+                                            <p>$2000</p>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </main>
+
+
+
+    <script src="/static/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/select2/dist/js/select2.min.js"></script>
+    <script src="/static/js/jquery.magnific-popup.min.js"></script>
+    <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/js/owl.carousel.js"></script>
+    <script src="/static/js/wow.js"></script>
+    <script src="/static/js/custom.js"></script>
+    <script src="/static/js/scripts.js"></script>
+
+</body>
+
+</html>

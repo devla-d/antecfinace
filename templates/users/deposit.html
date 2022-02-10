@@ -1,0 +1,149 @@
+{% extends "layout/users.html" %} {% block title %} Fund Account{% endblock title %} {% block stylesheet %} {% endblock stylesheet %} {% block content %}
+
+<header>
+    <!-- TopBar -->
+    <nav class="navbar navbar-expand   topbar mb-4 static-top">
+        <a href="{% url 'dashboard' %}" id="sidebarToggleTop2" class=" rounded-circle mr-3 text-white ">
+            <i class="fas fa-arrow-left"></i>
+            <span>Deposit</span>
+        </a>
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item    mx-1">
+                <a class="nav-link  " href="{% url 'notifications' %}" id="alertsDropdown">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <span class="badge badge-danger badge-counter">{{user_notify_count}}</span>
+                </a>
+
+            </li>
+
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+            <li class="nav-item dropdown no-arrow">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img class="img-profile rounded-circle" src="/static/images/avatar.png" style="max-width: 60px">
+                    <span class="ml-2 d-none d-lg-inline text-white small">{{user.username}}</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+
+                    <a class="dropdown-item" href="/my-account-settings/?tab=Update Profile">
+                        <i class="fas fa-cogs fa-sm fa-fw mr-2 "></i> Settings
+                    </a>
+                    <a class="dropdown-item" href="{% url 'history' %}">
+                        <i class="fas fa-list fa-sm fa-fw mr-2 "></i> Activity Log
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="javascript:void(0);" data-toggle="modal" data-target="#logoutModal">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 "></i> Logout
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <!-- Topbar -->
+</header>
+
+<div class="content" style="min-height: 87vh;">
+    <div class="container">
+        <div class="col-xl-12">
+            <div class="row justify-content-center">
+                <div class="col-7">
+                    <div class="depo-card breadcrum">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Deposit </li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="space-top second"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="deposite-card">
+
+                        <form action=" " method="post" id="depositForm">
+                            {% csrf_token %}
+
+
+                            <div class="steptab">
+                                <div class="form-group">
+                                    <label for="basic-addon2">Wallet address</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" value="1Ax6UvUksdfQGRjJV1yKkv9KFVk3Mr8pyn" id="myInput" disabled>
+
+                                        <div class="mytooltip input-group-append">
+                                            <button style="height: 43px;" class="input-group-text btn btn-primary" onclick="copyFunction('myInput')" onmouseout="outFunc()">
+                                                              <span class="tooltiptext" id="myTooltip">Copy </span>
+                                                              Copy
+                                                              </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group mt-3">
+                                    <label>Select Coin</label>
+
+                                    <select id="deposite_coin" class=" form-control" name="coin" required>
+                                                             
+                                                              <option value="BTC">BTC</option>
+                                                              <option value="ETH">ETH</option>
+                                                              <option value="DOGE">DOGE</option>
+                                                              <option value="XPR">XPR</option>
+                                                          </select>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label>Amount in Usd</label>
+                                    <input type="number" class="form-control" placeholder="Amount" name="amount" required>
+                                </div>
+
+                                <div class="form-group mt-4">
+                                    <h6 class="text-prim" id="result-amount"></h6>
+                                </div>
+
+                                <h3 class="text-w-50 ">NOTE : <small class="text-muted">Transfer the amount worth of coin to the provided address above, you  will be credited after your transaction have been approved.</small></h3>
+                                <div class="form-group mt-4">
+                                    <button class="btn btn-primary btn-block">Submit</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %} {% block javascripts %}
+
+
+
+<script type="text/javascript">
+    /*
+                                                    Cpy to clipboard*/
+    function copyFunction(input) {
+        var copyText = document.getElementById(input);
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copied";
+    }
+
+    function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copy to Address";
+    }
+</script>
+
+
+{% endblock javascripts %}

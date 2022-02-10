@@ -1,0 +1,125 @@
+/* =================================================================== */
+
+
+/* ORANGE #fd961a
+====================================================================== */
+
+a,
+a:hover,
+a:active,
+a:focus,
+.title-head span,
+.base-color,
+.slider-text .slide-title span {
+    color: #fd961a;
+}
+
+.title-head-subtitle p:before,
+.title-head-subtitle p:after {
+    background: #fd961a;
+}
+
+.path {
+    stroke: #fd961a;
+}
+
+@-webkit-keyframes dash {
+    0% {
+        stroke-dashoffset: 2000;
+        opacity: 0;
+        stroke: #fd961a;
+    }
+    15% {
+        opacity: 1;
+        stroke: #fd961a;
+    }
+    70% {
+        opacity: 1;
+        stroke: #fd961a;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+        stroke: #fd961a;
+    }
+}
+
+@keyframes dash {
+    0% {
+        stroke-dashoffset: 2000;
+        opacity: 0;
+        stroke: #fd961a;
+    }
+    15% {
+        opacity: 1;
+        stroke: #fd961a;
+    }
+    70% {
+        opacity: 1;
+        stroke: #fd961a;
+    }
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+        stroke: #fd961a;
+    }
+}
+
+.btcwdgt.btcwdgt-s-price .btcwdgt-body ul li {
+    color: #fd961a !important;
+}
+
+.btcwdgt.btcwdgt-chart .btcwdgt-header h2,
+.btcwdgt.btcwdgt-chart .btcwdgt-header .stats {
+    background-color: #fd961a !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    background: rgba(253, 150, 26, .9) !important;
+    outline: none !important;
+}
+
+.slider.btn-primary:focus,
+.slider.btn-primary:active,
+ul.user li.sign-in a.btn-primary:focus,
+ul.user li.sign-in a.btn-primary:active {
+    border: 1px solid #fd961a !important;
+}
+
+@media (max-width: 767px) {
+    ul.navbar-nav>li.active,
+    ul.navbar-nav>li:not(.search):hover {
+        background: transparent;
+    }
+    .site-navigation.fixed ul.navbar-nav {
+        border: 0;
+    }
+    .site-navigation {
+        border-bottom: 1px solid #333;
+    }
+    body.light .navbar-collapse ul.navbar-nav>li.active>a,
+    .navbar-collapse ul.navbar-nav>li.active>a {
+        color: #fd961a;
+    }
+}
+
+@media (max-width: 570px) {
+    .about-content ul.nav.nav-tabs li.active a {
+        color: #fff;
+    }
+    ul.nav.nav-tabs li.active a:hover,
+    ul.nav.nav-tabs li.active a {
+        background: #fd961a;
+    }
+    ul.nav.nav-tabs li.active {
+        border-bottom: 1px solid #fd961a;
+    }
+    .facts {
+        background: #222;
+    }
+    body.light .facts {
+        background: #e7e7e7;
+    }
+}
